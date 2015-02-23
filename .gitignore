@@ -7,6 +7,8 @@
 
 platforms 
 www
+plugins
+
 # Icon must end with two \r
 Icon
 
