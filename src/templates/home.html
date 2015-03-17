@@ -29,34 +29,22 @@
 				<p><a
 					href="http://www.walkscore.com/DC/Washington_D.C./Downtown?utm_source=badge&utm_medium=responsive&utm_campaign=badge"
 					target="_blank">Explore Downtown on Walk Score</a></p>
-		</div>
-		<div class="property-condition">
 				<span>Nearest Metro Stop:</span>
 				<div>{{property.properties.properties[0].distances.metroName}}<br>
 					{{property.properties.properties[0].distances.metroDist * 0.000621371 | number:2}} mi
 				</div>
-		</div>
-
-		<div class="property-condition">
 				<span>Nearest Bus Route:</span>
 				<div>{{property.properties.properties[0].distances.metrobusRoutes}}<br>
 					{{property.properties.properties[0].distances.metrobusDist * 0.000621371 | number:2}} mi
 			  </div>
 
-	  </div>
-
-		<div class="property-condition">
 				<span>Nearest Zipcar Location:</span>
 				<div>{{property.properties.properties[0].distances.zipcarLoc | capitalize:'nottwo'}}<br>
 					{{property.properties.properties[0].distances.zipcarDist * 0.000621371 | number:2}} mi</div>
-		</div>
-		<div class="property-condition">
 				<span>Nearest Bike Share Location:</span>
 				<div>{{property.properties.properties[0].distances.bikeshareLoc}}<br>
 					{{property.properties.properties[0].distances.bikeshareDist * 0.000621371 | number:2}} mi
 				</div>
-		</div>
-		<div class="property-condition">
 				<span>Average Commute Time:</span>
 				<div>{{property.census.commuteTimeMean| number: 0}} minutes</div>
 				<div id="cars-per-household-chart" class="details-charts" google-chart data="householdCarData"
