@@ -1,10 +1,75 @@
 <section class="section container-fluid">
-  <h1 class="page-header">Welcome to Property Lookup</h1>
-  Enter an address:<input value="{{address}}"/>
-  <input type="button">Get Data</input>
-  
-  <h3>Results</h3>
-  <div>Some results</div>
-  
-  
+	<section>
+		<p class="page-header">Current Address: {{current.address}}</p>
+	</section>
+	<section class="data-entry">
+		  <input alt="Enter address" placeholder="Enter Address" class="address" value="{{address}}">
+			<input type="button" value="Go" class="Go" alt="Go">
+	</section>
+	<section class="scroller property-pane">
+		<div class="property-condition" id="home-content">
+				<div id="demographics">
+						<p class="chart-titles">Household Income</p>
+						<div id="household_income" class="details-charts" google-chart data="householdIncome" type="PercentBarChart"></div>
+						<div id="employment-occupation-chart" class="details-charts" google-chart data="employmentOccupation" type="PieChart"></div>
+						<p class="chart-titles">Educational Attainment (25+)</p>
+						<div id="education-chart" class="details-charts" google-chart data="educationpct" type="PercentBarChart"></div>
+				</div>
+		</div>
+		<div class="property-condition"id="transit">
+		  <h5>Transit</h5>
+				<div class="walk-score">
+					<a
+						ng-href="http://www.walkscore.com/score/{{walkAddress}}?utm_source=badge&utm_medium=responsive&utm_campaign=badge"
+						ng-if="walkAddress">
+						<img src="//pp.walk.sc/badge/walk/{{walkAddress}}.svg" alt="Walk Score of {{property.address}}"><!-- <![endif]-->
+						<img src="//pp.walk.sc/badge/transit/{{walkAddress}}.svg" alt="Transit Score of {{property.address}}"><!-- <![endif]-->
+						<img src="//pp.walk.sc/badge/bike/{{walkAddress}}.svg" alt="Bike Score of {{property.address}}"><!-- <![endif]-->
+					</a>
+				</div>
+				<p><a
+					href="http://www.walkscore.com/DC/Washington_D.C./Downtown?utm_source=badge&utm_medium=responsive&utm_campaign=badge"
+					target="_blank">Explore Downtown on Walk Score</a></p>
+		</div>
+		<div class="property-condition">
+				<span>Nearest Metro Stop:</span>
+				<div>{{property.properties.properties[0].distances.metroName}}<br>
+					{{property.properties.properties[0].distances.metroDist * 0.000621371 | number:2}} mi
+				</div>
+		</div>
+
+		<div class="property-condition">
+				<span>Nearest Bus Route:</span>
+				<div>{{property.properties.properties[0].distances.metrobusRoutes}}<br>
+					{{property.properties.properties[0].distances.metrobusDist * 0.000621371 | number:2}} mi
+			  </div>
+
+	  </div>
+
+		<div class="property-condition">
+				<span>Nearest Zipcar Location:</span>
+				<div>{{property.properties.properties[0].distances.zipcarLoc | capitalize:'nottwo'}}<br>
+					{{property.properties.properties[0].distances.zipcarDist * 0.000621371 | number:2}} mi</div>
+		</div>
+		<div class="property-condition">
+				<span>Nearest Bike Share Location:</span>
+				<div>{{property.properties.properties[0].distances.bikeshareLoc}}<br>
+					{{property.properties.properties[0].distances.bikeshareDist * 0.000621371 | number:2}} mi
+				</div>
+		</div>
+		<div class="property-condition">
+				<span>Average Commute Time:</span>
+				<div>{{property.census.commuteTimeMean| number: 0}} minutes</div>
+				<div id="cars-per-household-chart" class="details-charts" google-chart data="householdCarData"
+						 type="BarChart" style=""></div>
+				<p class="">Data Source: Walk Score, DC Government, US Census - American Community Survey 2013</p>
+		</div>
+
+	</div>
+
+
+	</section>
+
+
+
 </section>
