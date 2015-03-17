@@ -1,0 +1,96 @@
+/*                          */
+/*        Common use        */
+/*                          */
+.none{
+  display: none;
+}
+/*                          */
+/*    header and body       */
+/*                          */
+.data-entry,
+.chart-title,
+.property-pane{
+    width: 100%;
+}
+.data-entry{
+    background: #55aade;
+    margin: 0;
+
+    font-size: 14px;
+    input.address{
+        width: 78%;
+        padding: 1%;
+        margin: 1%;
+        display: inline-block;
+        vertical-align: middle;
+    }
+    input.go{
+        width: 19%;
+        margin: 2% 1.5%;
+        vertical-align: middle;
+    
+    }
+}
+.chart-title{
+  background: rgb(187, 229, 255);
+  padding: 4px;
+}
+
+/*                          */
+/*        Table use         */
+/*                          */
+.scroller {
+    overflow: auto;
+    -webkit-overflow-scrolling: touch;
+    position: absolute;
+    top: 141px;
+    bottom: 0px;
+    left: 5px;
+    right: 5px;
+}
+.property-value-item {
+    font-size: 1.4em;
+    margin: .1em 0;
+    background: #55aade !important;
+    padding: .4em ;
+    color: #cccccc;
+    width: 99.5%;
+}
+h5{
+  color: #ffffff;
+  text-transform: uppercase;
+  letter-spacing: .03em;
+  font-size: 95%;
+  span {
+    color: #005153;
+    font-size: 80%
+  }
+}
+
+.property-pane > div{
+  padding: 4px;
+}
+.property-pane > div:nth-of-type(even) {
+  background-color: #ffffff; }
+
+.property-pane tbody tr:nth-of-type(even) {
+  background-color: #ffffff; }
+
+.property-pane .property-condition:nth-of-type(odd) {
+  background-color: #eeeeee; }
+
+.property-pane tbody tr:nth-of-type(odd) {
+  background-color: #eeeeee !important; }
+
+.property-pane .property-condition{
+  span{
+      text-transform: uppercase;
+      font-weight: 700;
+  }
+  .details-charts{
+    width: 99%;
+    height: 300px;
+    margin: .5%;
+    background: blue;
+  }
+}
