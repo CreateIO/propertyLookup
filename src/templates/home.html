@@ -1,24 +1,23 @@
 <section class="section container-fluid">
 	<section>
 		<p class="page-header">Current Address: {{current.address}}</p>
-	</section>
-	<section class="data-entry">
+		<div class="data-entry">
 		  <input alt="Enter address" placeholder="Enter Address" class="address" value="{{address}}">
 			<input type="button" value="Go" class="Go" alt="Go">
+		</div>
 	</section>
 	<section class="scroller property-pane">
-		<div class="property-condition" id="home-content">
-				<div id="demographics">
-						<p class="chart-titles">Household Income</p>
+		<div class="property-condition" id="demographics">
+					  <span>Household Income</span>
 						<div id="household_income" class="details-charts" google-chart data="householdIncome" type="PercentBarChart"></div>
+					  <span>Employment Occupation</span>
 						<div id="employment-occupation-chart" class="details-charts" google-chart data="employmentOccupation" type="PieChart"></div>
-						<p class="chart-titles">Educational Attainment (25+)</p>
+						<span>Educational Attainment (25+)</span>
 						<div id="education-chart" class="details-charts" google-chart data="educationpct" type="PercentBarChart"></div>
-				</div>
 		</div>
-		<div class="property-condition"id="transit">
-		  <h5>Transit</h5>
-				<div class="walk-score">
+		<div class="property-condition" id="transit">
+			<span>Transit</span>
+			<div class="walk-score">
 					<a
 						ng-href="http://www.walkscore.com/score/{{walkAddress}}?utm_source=badge&utm_medium=responsive&utm_campaign=badge"
 						ng-if="walkAddress">
@@ -26,7 +25,7 @@
 						<img src="//pp.walk.sc/badge/transit/{{walkAddress}}.svg" alt="Transit Score of {{property.address}}"><!-- <![endif]-->
 						<img src="//pp.walk.sc/badge/bike/{{walkAddress}}.svg" alt="Bike Score of {{property.address}}"><!-- <![endif]-->
 					</a>
-				</div>
+			</div>
 				<p><a
 					href="http://www.walkscore.com/DC/Washington_D.C./Downtown?utm_source=badge&utm_medium=responsive&utm_campaign=badge"
 					target="_blank">Explore Downtown on Walk Score</a></p>
