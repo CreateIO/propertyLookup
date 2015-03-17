@@ -15,12 +15,12 @@
 .data-entry{
     background: #55aade;
     margin: 0;
-
     font-size: 14px;
+    width: 100%;
     input.address{
         width: 78%;
         padding: 1%;
-        margin: 1%;
+        margin: 3%;
         display: inline-block;
         vertical-align: middle;
     }
@@ -43,13 +43,15 @@
     overflow: auto;
     -webkit-overflow-scrolling: touch;
     position: absolute;
-    top: 141px;
+    top: 130px;
     bottom: 0px;
-    left: 5px;
-    right: 5px;
+    left:0;
+    right:0;
+    padding: 0;
+    background: white;
 }
 .property-value-item {
-    font-size: 1.4em;
+    font-size: 6.4em;
     margin: .1em 0;
     background: #55aade !important;
     padding: .4em ;
@@ -67,20 +69,17 @@ h5{
   }
 }
 
-.property-pane > div{
-  padding: 4px;
-}
-.property-pane > div:nth-of-type(even) {
-  background-color: #ffffff; }
 
 .property-pane tbody tr:nth-of-type(even) {
   background-color: #ffffff; }
+.property-pane tbody tr:nth-of-type(odd) {
+  background-color: #eeeeee !important; }
 
 .property-pane .property-condition:nth-of-type(odd) {
   background-color: #eeeeee; }
+.property-pane .property-condition:nth-of-type(even) {
+  background-color: #ffffff; }
 
-.property-pane tbody tr:nth-of-type(odd) {
-  background-color: #eeeeee !important; }
 
 .property-pane .property-condition{
   span{
@@ -88,9 +87,9 @@ h5{
       font-weight: 700;
   }
   .details-charts{
-    width: 98%;
+    width: 100%;
     height: 300px;
-    margin: .5% 1%;
-    background: blue;
+    margin: 0;
+    background: black;
   }
 }
