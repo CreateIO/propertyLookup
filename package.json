@@ -23,5 +23,12 @@
     "gulp-angular-filesort": "^1.0.1",
     "streamqueue": "^0.1.1",
     "gulp-rename": "^1.2.0"
+  },
+  "dependencies": {
+    "chai": "^2.1.2",
+    "colors": "^1.0.3",
+    "karma": "^0.12.31",
+    "mocha": "^2.2.1",
+    "sinon": "^1.14.1"
   }
 }
