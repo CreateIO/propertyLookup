@@ -1,14 +1,16 @@
 <section class="section container-fluid">
 	<section>
-		<p class="page-header">Current Address: {{currentAddress}}</p>
+		<location-picker ng-model="pickedLocation"
+    limit-to="5"></location-picker>
+		<p class="page-header">Current Address: {{address3}}</p>
 		<div class="data-entry">
-		  <input alt="Enter address" placeholder="Enter Address" class="address" value="{{address}}">
+		  <input alt="Enter address" placeholder="{{address2}}" class="address" value="{{address2}}">
 			<input type="button" value="Go" class="Go" alt="Go">
 		</div>
 	</section>
 	<section class="scroller property-pane">
 		<div class="property-condition" id="demographics">
-			<span>Household Income</span>
+			<span  id="householdIncome2">Household Income</span>
 			<div id="household_income" class="details-charts" google-chart data="householdIncome" type="PercentBarChart"></div>
 			<span>Employment Occupation</span>
 			<div id="employment-occupation-chart" class="details-charts" google-chart data="employmentOccupation" type="PieChart"></div>
