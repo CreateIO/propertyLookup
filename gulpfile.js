@@ -14,7 +14,6 @@ var config = {
       './bower_components/angular/angular.js',
       './bower_components/angular-route/angular-route.js',
       './bower_components/mobile-angular-ui/dist/js/mobile-angular-ui.js',
-      './bower_components/gsap/src/minified/TweenLite.min.js'
     ],
 
     fonts: [

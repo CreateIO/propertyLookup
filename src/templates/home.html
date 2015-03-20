@@ -1,12 +1,37 @@
 <section class="section container-fluid">
 	<section>
-		<location-picker ng-model="pickedLocation"
-    limit-to="5"></location-picker>
-		<p class="page-header">Current Address: {{currentAddress}}</p>
+		<p class="page-header">Current Address: {{address}}</p>
+		<location-picker ng-model="pickedLocation" limit-to="5"></location-picker>
+	<div>Walk: {{walkAddress}}
+	Zillow:	{{zillowAddress}} Google: {{googleAddress}}</div>
 		<div class="data-entry">
-		  <input alt="Enter address" placeholder="{{address2}}" class="address" value="{{address2}}">
+		  <input alt="Enter address" placeholder="{{address}}" class="address" value="{{address2}}">
 			<input type="button" value="Go" class="Go" alt="Go">
 		</div>
+		<div ng-class="{ false: 'modal', true: 'modal--show' }[isModalVisible]">
+			<div class="overlay" ng-click="toggleModal()"></div>
+			<div class="modal__contents modal--transition">
+				<a class="modal__close" href="" ng-click="toggleModal()">&times;</a>
+				<h3 ng-if="pickedLocation">Picked Location</h3>
+				<p ng-if="pickedLocation">Name: <span class="muted">{{pickedLocation.name}}</span><br/>Description: <span class="muted">{{pickedLocation.description}}</span><br/>Latitude: <span class="muted">{{pickedLocation.latitude}}</span><br/>Longitude: <span class="muted">{{pickedLocation.longitude}}</span></p>
+				<br/>
+				<br/>
+				<h3 ng-if="lookedUpLocation">Looked Up Location</h3>
+				<p ng-if="lookedUpLocation">Name: <span class="muted">{{lookedUpLocation.name}}</span><br/>Description: <span class="muted">{{lookedUpLocation.description}}</span><br/>Latitude: <span class="muted">{{lookedUpLocation.latitude}}</span><br/>Longitude: <span class="muted">{{lookedUpLocation.longitude}}</span></p>
+			</div>
+		</div>
+
+		<!-- Dependencies -->
+		<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular.min.js"></script>
+		<!-- endDependencies -->
+
+		<!-- Google Maps API -->
+		<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?key=AIzaSyDk_iQ6QWOTHW-TWoXSFLwbcnhaxlcnXXk&libraries=places&sensor=true"></script>
+
+		<!-- Scripts -->
+		<script src="locator/locator.min.js"></script>
+		<script src="locator/locator-tpl.js"></script>
+		<script src="js/app.js"></script>
 	</section>
 	<section class="scroller property-pane">
 		<div class="property-condition" id="demographics">
@@ -21,9 +46,9 @@
 					<a
 						ng-href="http://www.walkscore.com/score/{{walkAddress}}?utm_source=badge&utm_medium=responsive&utm_campaign=badge"
 						ng-if="walkAddress">
-						<img src="//pp.walk.sc/badge/walk/{{walkAddress}}.svg" alt="Walk Score of {{property.address}}" />
-						<img src="//pp.walk.sc/badge/transit/{{walkAddress}}.svg" alt="Transit Score of {{property.address}}" />
-						<img src="//pp.walk.sc/badge/bike/{{walkAddress}}.svg" alt="Bike Score of {{property.address}}" />
+						<img src="//pp.walk.sc/badge/walk/{{walkAddress}}.svg" alt="Walk Score of {{address}}" />
+						<img src="//pp.walk.sc/badge/transit/{{walkAddress}}.svg" alt="Transit Score of {{address}}" />
+						<img src="//pp.walk.sc/badge/bike/{{walkAddress}}.svg" alt="Bike Score of {{address}}" />
 					</a>
 			</div>
 			<span>Educational Attainment (25+)</span>
