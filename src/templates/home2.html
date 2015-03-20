@@ -1,42 +1,16 @@
 <section class="section container-fluid">
 	<section>
-		<p class="page-header">Current Address: {{current.address}}</p>
 		<location-picker ng-model="pickedLocation"
-						 limit-to="5"></location-picker>
-		<p class="page-header">Current Address: {{address3}}</p>
-
+    limit-to="5"></location-picker>
+		<p class="page-header header-text2">testing testing testing Current Address: {{address3}}</p>
 		<div class="data-entry">
 		  <input alt="Enter address" placeholder="{{address2}}" class="address" value="{{address2}}">
 			<input type="button" value="Go" class="Go" alt="Go">
 		</div>
-		<div ng-class="{ false: 'modal', true: 'modal--show' }[isModalVisible]">
-			<div class="overlay" ng-click="toggleModal()"></div>
-			<div class="modal__contents modal--transition">
-				<a class="modal__close" href="" ng-click="toggleModal()">&times;</a>
-				<h3 ng-if="pickedLocation">Picked Location</h3>
-				<p ng-if="pickedLocation">Name: <span class="muted">{{pickedLocation.name}}</span><br/>Description: <span class="muted">{{pickedLocation.description}}</span><br/>Latitude: <span class="muted">{{pickedLocation.latitude}}</span><br/>Longitude: <span class="muted">{{pickedLocation.longitude}}</span></p>
-				<br/>
-				<br/>
-				<h3 ng-if="lookedUpLocation">Looked Up Location</h3>
-				<p ng-if="lookedUpLocation">Name: <span class="muted">{{lookedUpLocation.name}}</span><br/>Description: <span class="muted">{{lookedUpLocation.description}}</span><br/>Latitude: <span class="muted">{{lookedUpLocation.latitude}}</span><br/>Longitude: <span class="muted">{{lookedUpLocation.longitude}}</span></p>
-			</div>
-		</div>
-
-		<!-- Dependencies -->
-		<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular.min.js"></script>
-		<!-- endDependencies -->
-
-		<!-- Google Maps API -->
-		<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?key=AIzaSyDk_iQ6QWOTHW-TWoXSFLwbcnhaxlcnXXk&libraries=places&sensor=true"></script>
-
-		<!-- Scripts -->
-		<script src="locator/locator.min.js"></script>
-		<script src="locator/locator-tpl.js"></script>
-		<script src="js/app.js"></script>
 	</section>
 	<section class="scroller property-pane">
 		<div class="property-condition" id="demographics">
-			<span  id="householdIncome2">Household Income</span>
+			<span id="householdIncome">Household Income</span>
 			<div id="household_income" class="details-charts" google-chart data="householdIncome" type="PercentBarChart"></div>
 			<span>Employment Occupation</span>
 			<div id="employment-occupation-chart" class="details-charts" google-chart data="employmentOccupation" type="PieChart"></div>

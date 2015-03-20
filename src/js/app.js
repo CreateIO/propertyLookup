@@ -6,4 +6,5 @@ angular.module('PropLookupRE', [
 
 .config(function($routeProvider) {
   $routeProvider.when('/', {templateUrl:'home.html',  reloadOnSearch: false});
+  $routeProvider.when('/geocoder', {templateUrl:'home2.html',  reloadOnSearch: false});
 });
