@@ -1,11 +1,12 @@
 <section class="section container-fluid">
 	<section>
-		<p class="page-header">Current Address: {{current.address}}</p>
+		<p class="page-header">Current Address: {{address}}</p>
 		<location-picker ng-model="pickedLocation"
 						 limit-to="5"></location-picker>
-
+	<div>Walk: {{walkAddress}}
+	Zillow:	{{zillowAddress}} Google: {{googleAddress}}</div>
 		<div class="data-entry">
-		  <input alt="Enter address" placeholder="{{address2}}" class="address" value="{{address2}}">
+		  <input alt="Enter address" placeholder="{{address}}" class="address" value="{{address2}}">
 			<input type="button" value="Go" class="Go" alt="Go">
 		</div>
 		<div ng-class="{ false: 'modal', true: 'modal--show' }[isModalVisible]">
@@ -46,9 +47,9 @@
 					<a
 						ng-href="http://www.walkscore.com/score/{{walkAddress}}?utm_source=badge&utm_medium=responsive&utm_campaign=badge"
 						ng-if="walkAddress">
-						<img src="//pp.walk.sc/badge/walk/{{walkAddress}}.svg" alt="Walk Score of {{property.address}}" />
-						<img src="//pp.walk.sc/badge/transit/{{walkAddress}}.svg" alt="Transit Score of {{property.address}}" />
-						<img src="//pp.walk.sc/badge/bike/{{walkAddress}}.svg" alt="Bike Score of {{property.address}}" />
+						<img src="//pp.walk.sc/badge/walk/{{walkAddress}}.svg" alt="Walk Score of {{address}}" />
+						<img src="//pp.walk.sc/badge/transit/{{walkAddress}}.svg" alt="Transit Score of {{address}}" />
+						<img src="//pp.walk.sc/badge/bike/{{walkAddress}}.svg" alt="Bike Score of {{address}}" />
 					</a>
 			</div>
 			<span>Educational Attainment (25+)</span>
