@@ -40,5 +40,8 @@
     "sinon": "^1.9.0",
     "streamqueue": "^0.1.1",
     "weinre": "^2.0.0-pre-I0Z7U9OV"
+  },
+  "dependencies": {
+    "gsap": "^1.16.1"
   }
 }
