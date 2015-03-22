@@ -35,7 +35,7 @@ angular.module('Commutable')
                 });
         };
     })
-    .controller('MainController', ['$scope', '$document', '$window', '$rootScope', 'deviceReady', 'getCurrentPosition', function ($scope, $document, $window, $rootScope, deviceReady, getCurrentPosition) {
+    .controller('MainController', ['$scope', '$document', '$window', '$rootScope', 'deviceReady', 'getCurrentPosition', 'getWeather', function ($scope, $document, $window, $rootScope, deviceReady, getCurrentPosition, getWeather) {
         //$scope.currentAddress = "1111 19th St NW, Washington, DC 20036";
         $scope.model = {
             "address": "555 Pennsylvania Ave NW, Washington, DC 20001",
