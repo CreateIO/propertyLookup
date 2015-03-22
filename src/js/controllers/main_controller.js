@@ -24,6 +24,27 @@ angular.module('Commutable')
                 });
             });
         };
+    }).factory('getWeather', function($http){
+        return function(lat, lng, done) {
+            $http({method: 'GET', url: 'http://api.openweathermap.org/data/2.5/weather?lat='+lat+'&lon='+lng})
+                .success(function(data, status, headers, config) {
+                    done(data.name, data.weather[0].description);
+                })
+                .error(function(data, status, headers, config) {
+                    throw new Error('Unable to get weather');
+                });
+        };
+    })
+    .controller('MainController', function($scope, getCurrentPosition, getWeather){
+        getCurrentPosition(function(position){
+            getWeather(
+                position.coords.latitude,
+                position.coords.longitude,
+                function(location, weather){
+                    $scope.location = location;
+                    $scope.weather = weather;
+                });
+        });
     })
     .controller('MainController', ['$scope', '$document', '$window', '$rootScope', 'deviceReady', 'getCurrentPosition', function ($scope, $document, $window, $rootScope, deviceReady, getCurrentPosition) {
         //$scope.currentAddress = "1111 19th St NW, Washington, DC 20036";
