@@ -8,7 +8,7 @@ angular.module('PropLookupRE.controllers.Main', [])
         $scope.longitude = 0;
         $scope.issue = function () {
             var textElement = document.getElementById("householdIncome");
-            textElement.innerHTML = 'no more issue!';
+            textElement.innerHTML = 'I am a changed div!';
             console.log(textElement.innerHTML);
         };
 
@@ -125,6 +125,5 @@ angular.module('PropLookupRE.controllers.Main', [])
         return {
             scope: true,
             link: linker
-//        templateUrl: 'smooth-button.tmpl.html'
         }
     });
