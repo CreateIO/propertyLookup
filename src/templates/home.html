@@ -1,36 +1,42 @@
+<html ng-app="Commutable">
 <section class="section container-fluid" ng-controller="MainController">
-    <!-- Dependencies -->
-    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular.min.js"></script>
-    <!-- endDependencies -->
+	<!-- Dependencies -->
+	<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular.min.js"></script>
+	<!-- endDependencies -->
 
-    <!-- Google Maps API -->
-    <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?key=AIzaSyDk_iQ6QWOTHW-TWoXSFLwbcnhaxlcnXXk&libraries=places&sensor=true"></script>
-    <!-- Scripts -->
-    <div class="data-entry">
-        <input alt="Enter address" placeholder="{{property.address}}" class="address" ng-model="property.address">
-        <input type="button" value="Go" class="Go" alt="Go" ng-click="loadAddresses()">
-    </div>
+	<!-- Google Maps API -->
+	<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?key=AIzaSyDk_iQ6QWOTHW-TWoXSFLwbcnhaxlcnXXk&libraries=places&sensor=true"></script>
+	<!--<script src="locator/locator.min.js"></script>-->
+	<!--<script src="locator/locator-tpl.js"></script>-->
+	<!--<script src="js/app.js"></script>-->
+	<!-- Scripts -->
+	<div class="data-entry">
+		<input alt="Enter address" placeholder="{{property.address}}" class="address" ng-model="property.address">
+		<input type="button" value="Go" class="Go" alt="Go" ng-click="loadAddresses()">
+	</div>
 
-    <section class="scroller property-pane">
-        <p class="page-header">Current Address: {{property.address}}</p>
-        <location-picker ng-model="pickedLocation"  limit-to="5"></location-picker>
-            <span>Walk:</span> {{property.walkAddress}}<br>
-            <span>Zillow:</span> {{property.zillowAddress}}<br>
-            <span>Google:</span> {{property.googleAddress}}
-        </div>
-        <div class="property-condition" id="transit">
-            <span>Transit</span>
-            <div class="walk-score">
-                <a ng-href="http://www.walkscore.com/score/{{property.walkAddress}}?utm_source=badge&utm_medium=responsive&utm_campaign=badge"
-                   ng-if="property.walkAddress">
-                    <img src="//pp.walk.sc/badge/walk/{{property.walkAddress}}.svg"
-                         alt="Walk Score of {{property.address}}"/>
-                    <img src="//pp.walk.sc/badge/transit/{{property.walkAddress}}.svg"
-                         alt="Transit Score of {{property.address}}"/>
-                    <img src="//pp.walk.sc/badge/bike/{{property.walkAddress}}.svg"
-                         alt="Bike Score of {{property.address}}"/>
-                </a>
-            </div>
-        </div>
-    </section>
+	<section class="scroller property-pane">
+		<p class="page-header">Current Address: {{property.address}} {{property.walkAddress}}</p>
+		<location-picker ng-model="pickedLocation"
+						 limit-to="5"></location-picker>
+		<div>
+			<span>Walk:</span> {{property.walkAddress}}<br>
+			<span>Zillow:</span> {{property.zillowAddress}}<br>
+			<span>Google:</span> {{property.googleAddress}}
+		</div>
+		<div class="property-condition" id="transit">
+			<span>Transit</span>
+			<div class="walk-score">
+				<a ng-href="http://www.walkscore.com/score/{{property.walkAddress}}?utm_source=badge&utm_medium=responsive&utm_campaign=badge"
+				   ng-if="property.walkAddress">
+					<img src="//pp.walk.sc/badge/walk/{{property.walkAddress}}.svg"
+						 alt="Walk Score of {{property.address}}"/>
+					<img src="//pp.walk.sc/badge/transit/{{property.walkAddress}}.svg"
+						 alt="Transit Score of {{property.address}}"/>
+					<img src="//pp.walk.sc/badge/bike/{{property.walkAddress}}.svg"
+						 alt="Bike Score of {{property.address}}"/>
+				</a>
+			</div>
+		</div>
+	</section>
 </section>
