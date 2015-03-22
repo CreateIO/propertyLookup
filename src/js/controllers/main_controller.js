@@ -35,26 +35,18 @@ angular.module('Commutable')
                 });
         };
     })
-    .controller('MainController', function($scope, getCurrentPosition, getWeather){
-        getCurrentPosition(function(position){
-            getWeather(
-                position.coords.latitude,
-                position.coords.longitude,
-                function(location, weather){
-                    $scope.location = location;
-                    $scope.weather = weather;
-                });
-        });
-    })
     .controller('MainController', ['$scope', '$document', '$window', '$rootScope', 'deviceReady', 'getCurrentPosition', function ($scope, $document, $window, $rootScope, deviceReady, getCurrentPosition) {
         //$scope.currentAddress = "1111 19th St NW, Washington, DC 20036";
-        $scope.property = {
+        $scope.model = {
             "address": "315 S. Garfield St, Arlington, VA 22204",
             "latitude": 0,
             "longitude": 0,
             "walkAddress": "",
             "googleAddress": "",
-            "currentPosition": ""
+            "currentPosition": "",
+            "location":"",
+            "weather":"",
+            "markers":""
         };
 
         $scope.issue = function () {
@@ -78,9 +70,9 @@ angular.module('Commutable')
         }
 
         $scope.walkAddressLookup = function () {
-            if ($scope.property.address) {
-                console.log("refreshing with address " + $scope.property.address);
-                var address = $scope.property.address;
+            if ($scope.model.address) {
+                console.log("refreshing with address " + $scope.model.address);
+                var address = $scope.model.address;
 
                 address = address.replace(',', '');
                 //for walkscore
@@ -93,21 +85,35 @@ angular.module('Commutable')
              getCurrentPosition(function (position) {
                  console.log("Position is ");
                  console.log(position);
-                 $scope.property.currentPosition = position;
+                 $scope.model.currentPosition = position;
+                 $scope.model.latitude = position.coords.latitude;
+                 $scope.model.longitude = position.coords.longitude;
+                 getWeather(
+                     position.coords.latitude,
+                     position.coords.longitude,
+                     function(location, weather){
+                         $scope.model.location = location;
+                         $scope.model.weather = weather;
+                     });
+                 $scope.model.markers = [{
+                     color: 'blue',
+                     label: 'S',
+                     coords: [position.coords.latitude, position.coords.longitude,]
+                 }];
              });
 
-            if ($scope.property.address) {
-                console.log("refreshing with address " + $scope.property.address);
+            if ($scope.model.address) {
+                console.log("refreshing with address " + $scope.model.address);
                 //for walkscore
-                $scope.property.walkAddress = $scope.walkAddressLookup();
+                $scope.model.walkAddress = $scope.walkAddressLookup();
 
-                console.log("walk address is " + $scope.property.walkAddress);
+                console.log("walk address is " + $scope.model.walkAddress);
 
-                if (hasStreetNumber($scope.property.address)) {
-                    $scope.property.googleAddress = $scope.property.address;
+                if (hasStreetNumber($scope.model.address)) {
+                    $scope.model.googleAddress = $scope.model.address;
                 } else {
                     //try lat long, because this address isn't very specific
-                    $scope.property.googleAddress = '' + $scope.property.currentPosition.coords.latitude + ', ' + $scope.property.currentPosition.coords.longitude;
+                    $scope.model.googleAddress = '' + $scope.model.currentPosition.coords.latitude + ', ' + $scope.model.currentPosition.coords.longitude;
                 }
 
             }
@@ -124,7 +130,7 @@ angular.module('Commutable')
         //        timeout = $timeout( $rootScope.$apply(refresh), 1000);  // 1000 = 1 second
         //    }
         //};
-        //$scope.$watch('property.address', $scope.debounceRefresh);
+        //$scope.$watch('model.address', $scope.debounceRefresh);
         $scope.loadAddresses();
     }]) //https://github.com/winkerVSbecks/locator/blob/master/package.json
     .controller('locationCtrl', ['$scope', 'location', function ($scope, location) {
