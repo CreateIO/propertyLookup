@@ -1,41 +1,60 @@
-<section class="section container-fluid" ng-controller="MainController"  ng-init="loadAddresses()">
+<section class="section container-fluid" ng-controller="MainController" ng-init="loadAddresses()">
     <!-- Dependencies -->
     <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular.min.js"></script>
     <!-- endDependencies -->
 
-	<!-- Google Maps API -->
-	<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?key=AIzaSyDk_iQ6QWOTHW-TWoXSFLwbcnhaxlcnXXk&libraries=places&sensor=true"></script>
-	<!--<script src="locator/locator.min.js"></script>-->
-	<!--<script src="locator/locator-tpl.js"></script>-->
-	<!--<script src="js/app.js"></script>-->
-	<!-- Scripts -->
-	<div class="data-entry">
-		<input alt="Enter address" placeholder="Enter address" class="address" ng-model="property.address">
-		<input type="button" value="Go" class="Go" alt="Go" ng-click="loadAddresses()">
-	</div>
+    <!-- Google Maps API -->
+    <script type="text/javascript"
+            src="http://maps.googleapis.com/maps/api/js?key=AIzaSyDk_iQ6QWOTHW-TWoXSFLwbcnhaxlcnXXk&libraries=places&sensor=true"></script>
 
-	<section class="scroller property-pane">
-		<div>
-            <p ng-bind="property.address"></p>
-            <p ng-bind="property.currentPosition"></p>
-			<span class="hide">Walk: {{property.walkAddress}}</span>
-			<span class="hide">Google: {{property.googleAddress}}</span>
-            <span>Your Current Position:</span> {{property.currentPosition}}
+    <!-- Scripts -->
+    <div class="data-entry">
+        <input alt="Enter address" placeholder="{{model.address}}" class="address" ng-model="model.address">
+        <input type="button" value="Go" class="Go" alt="Go" ng-click="loadAddresses()">
+    </div>
+
+    <section class="scroller property-pane">
+        <div>
+            <p ng-bind="model.address"></p>
+
+            <p ng-bind="model.currentPosition"></p>
+            <span class="hide">Walk: {{model.walkAddress}}</span>
+            <span class="hide">Google: {{model.googleAddress}}</span>
+            <span>Your Current Position:</span> {{model.currentPosition}}
+        </div>
+        <div>
+            <span>Walk:</span> {{model.walkAddress}}<br>
+            <span>Zillow:</span> {{model.zillowAddress}}<br>
+            <span>Google:</span> {{model.googleAddress}}<br>
+            <span>Current Position:</span> {{model.currentPosition}}<br>
+        </div>
+
+        <section class="section container-fluid">
+            <div bs-panel title="{{model.location}}">
+                <h3>Weather:</h3>{{model.weather}}<br>
             </div>
-		<div class="property-condition" id="transit">
-			<span>Transit</span>
-			<div class="walk-score">
-				<a ng-href="http://www.walkscore.com/score/{{property.walkAddress}}?utm_source=badge&utm_medium=responsive&utm_campaign=badge"
-				   ng-if="property.walkAddress">
-					<img src="//pp.walk.sc/badge/walk/{{property.walkAddress}}.svg"
-						 alt="Walk Score of {{property.address}}"/>
-					<img src="//pp.walk.sc/badge/transit/{{property.walkAddress}}.svg"
-						 alt="Transit Score of {{property.address}}"/>
-					<img src="//pp.walk.sc/badge/bike/{{property.walkAddress}}.svg"
-						 alt="Bike Score of {{property.address}}"/>
-				</a>
-			</div>
-		</div>
-	</section>
-</section>
+            <div class="property-condition" ng-show="model.currentPosition" ng-show="{{model.currentPosition}}">
+                <span>Location</span>
+                <img class="lazy"
+                     src="https://maps.googleapis.com/maps/api/staticmap?center={{model.latitude}},{{model.longitude}}&zoom=13&size=100x100&maptype=roadmapbfb61dbdefe917c8a29b69507c76d24c6f690672&markers=color:green%7Clabel:{{model.address}}%7c{{model.latitude}},{{model.longitude}}&sensor=false"
+                     width="30%" style="margin: .2em 0 0 -.2em" alt="model.address"/>
+            </div>
+            <div class="property-condition" id="transit">
+                <span>Transit</span>
 
+                <div class="walk-score">
+                    <a ng-href="http://www.walkscore.com/score/{{model.walkAddress}}?utm_source=badge&utm_medium=responsive&utm_campaign=badge"
+                       ng-if="model.walkAddress">
+                        <img src="//pp.walk.sc/badge/walk/{{model.walkAddress}}.svg"
+                             alt="Walk Score of {{model.address}}"/>
+                        <img src="//pp.walk.sc/badge/transit/{{model.walkAddress}}.svg"
+                             alt="Transit Score of {{model.address}}"/>
+                        <img src="//pp.walk.sc/badge/bike/{{model.walkAddress}}.svg"
+                             alt="Bike Score of {{model.address}}"/>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+    </section>
+</section>
