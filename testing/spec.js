@@ -13,14 +13,20 @@ it('should have a title', function() {
 
     var docs = element(by.css('.navbar-brand-center'));
 
-     expect(docs.getText()).toContain('Good Karma, People');
+     expect(docs.getText()).toContain('Good Karma Commutability');
+  });
+  it('should say the address', function() {
+    var addressTextArea = element(by.model('property.address'));
+    var addressTextDisplay = element(by.binding('property.address'));
+    addressTextArea.sendKeys('1320 14th St NW, DC', protractor.Key.ENTER);
+    expect(addressTextDisplay.getText()).toContain('1320 14th St NW, DC');
   });
 
-  it('should say Hi', function() {
-    var textArea = element(by.model('areaText'));
-    textArea.sendKeys('Hi!', protractor.Key.ENTER);
-    expect(textArea.getAttribute('value')).toContain('Hi!');
-  });
+//  it('should say Hi', function() {
+//    var textArea = element(by.model('areaText'));
+//    textArea.sendKeys('Hi!', protractor.Key.ENTER);
+//    expect(textArea.getAttribute('value')).toContain('Hi!');
+//  });
 //  it('should pass multiple buttons', function() {
 //    var docs = element(by.css('#docs'));
 //    var sources = element(by.css('#sources'));

@@ -1,7 +1,7 @@
-<section class="section container-fluid" ng-controller="MainController">
-	<!-- Dependencies -->
-	<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular.min.js"></script>
-	<!-- endDependencies -->
+<section class="section container-fluid" ng-controller="MainController"  ng-init="loadAddresses()">
+    <!-- Dependencies -->
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular.min.js"></script>
+    <!-- endDependencies -->
 
 	<!-- Google Maps API -->
 	<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?key=AIzaSyDk_iQ6QWOTHW-TWoXSFLwbcnhaxlcnXXk&libraries=places&sensor=true"></script>
@@ -17,10 +17,11 @@
 	<section class="scroller property-pane">
 		<div>
             <p ng-bind="property.address"></p>
-			<span>Current Position:</span> {{property.currentPosition}}
+            <p ng-bind="property.currentPosition"></p>
 			<span class="hide">Walk: {{property.walkAddress}}</span>
 			<span class="hide">Google: {{property.googleAddress}}</span>
-		</div>
+            <span>Your Current Position:</span> {{property.currentPosition}}
+            </div>
 		<div class="property-condition" id="transit">
 			<span>Transit</span>
 			<div class="walk-score">
@@ -37,3 +38,4 @@
 		</div>
 	</section>
 </section>
+
