@@ -10,21 +10,22 @@ angular.module('Commutable')
             }
         };
     })
-    .factory('getCurrentPosition', function (deviceReady, $document, $window, $rootScope) {
-        return function (done) {
-            deviceReady(function () {
-                navigator.geolocation.getCurrentPosition(function (position) {
-                    $rootScope.$apply(function () {
-                        done(position);
-                    });
-                }, function (error) {
-                    $rootScope.$apply(function () {
-                        throw new Error('Unable to retrieve position');
-                    });
-                });
+    .factory('getCurrentPosition', function(deviceReady, $document, $window, $rootScope){
+      return function(done) {
+        deviceReady(function(){
+          navigator.geolocation.getCurrentPosition(function(position){
+            $rootScope.$apply(function(){
+              done(position);
             });
-        };
-    }).factory('getWeather', function($http){
+          }, function(error){
+            $rootScope.$apply(function(){
+              throw new Error('Unable to retreive position');
+            });
+          });
+        });
+      };
+    })
+    .factory('getWeather', function($http){
         return function(lat, lng, done) {
             $http({method: 'GET', url: 'http://api.openweathermap.org/data/2.5/weather?lat='+lat+'&lon='+lng})
                 .success(function(data, status, headers, config) {
@@ -32,8 +33,8 @@ angular.module('Commutable')
                 })
                 .error(function(data, status, headers, config) {
                     throw new Error('Unable to get weather');
-                });
-        };
+                });        };
+
     })
     .controller('MainController', function($scope, getCurrentPosition, getWeather){
         getCurrentPosition(function(position){
@@ -91,8 +92,7 @@ angular.module('Commutable')
         $scope.loadAddresses = function () {
             // console.log($scope.googleAddress);
              getCurrentPosition(function (position) {
-                 console.log("Position is ");
-                 console.log(position);
+                 console.log("Position is " + position);
                  $scope.property.currentPosition = position;
              });
 
@@ -101,7 +101,7 @@ angular.module('Commutable')
                 //for walkscore
                 $scope.property.walkAddress = $scope.walkAddressLookup();
 
-                console.log("walk address is " + $scope.property.walkAddress);
+   //             console.log("walk address is " + $scope.property.walkAddress);
 
                 if (hasStreetNumber($scope.property.address)) {
                     $scope.property.googleAddress = $scope.property.address;
@@ -115,16 +115,6 @@ angular.module('Commutable')
         
         var timeout = null;
 
-        //$scope.debounceRefresh = function(newVal, oldVal) {
-        //    console.log("dbouncing");
-        //    if (newVal != oldVal) {
-        //        if (timeout) {
-        //            $timeout.cancel(timeout)
-        //        }
-        //        timeout = $timeout( $rootScope.$apply(refresh), 1000);  // 1000 = 1 second
-        //    }
-        //};
-        //$scope.$watch('property.address', $scope.debounceRefresh);
         $scope.loadAddresses();
     }]) //https://github.com/winkerVSbecks/locator/blob/master/package.json
     .controller('locationCtrl', ['$scope', 'location', function ($scope, location) {
