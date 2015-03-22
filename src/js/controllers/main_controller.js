@@ -39,10 +39,10 @@ angular.module('Commutable')
         
         $scope.issue = function () {
             var textElement = document.getElementById("householdIncome");
-            textElement.innerHTML = 'no more issue!';
+            textElement.innerHTML = 'I am a changed div!';
             console.log(textElement.innerHTML);
         };
-        
+
         function hasStreetNumber(address) {
             var components = address.split(' ');
             var first = components[0];
@@ -144,6 +144,7 @@ angular.module('Commutable')
             }
         };
     })
+
     .directive('smoothButton', function () {
         var linker = function (scope, element, attrs) {
             var tl = new TimelineLite();

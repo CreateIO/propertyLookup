@@ -1,121 +1,41 @@
 <section class="section container-fluid" ng-controller="MainController">
-    <section>
-        <p class="page-header">Current Address: {{property.address}} {{property.walkAddress}}</p>
-        <location-picker ng-model="pickedLocation"
-                         limit-to="5"></location-picker>
+	<!-- Dependencies -->
+	<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular.min.js"></script>
+	<!-- endDependencies -->
 
-        <div class="data-entry">
-            <input alt="Enter address" placeholder="{{property.address}}" class="address" ng-model="property.address">
-            <input type="button" value="Go" class="Go" alt="Go" onclick="{{loadAddresses()}}">
+	<!-- Google Maps API -->
+	<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?key=AIzaSyDk_iQ6QWOTHW-TWoXSFLwbcnhaxlcnXXk&libraries=places&sensor=true"></script>
+	<!--<script src="locator/locator.min.js"></script>-->
+	<!--<script src="locator/locator-tpl.js"></script>-->
+	<!--<script src="js/app.js"></script>-->
+	<!-- Scripts -->
+	<div class="data-entry">
+		<input alt="Enter address" placeholder="{{property.address}}" class="address" ng-model="property.address">
+		<input type="button" value="Go" class="Go" alt="Go" onclick="{{loadAddresses()}}">
+	</div>
 
-            <div>Walk: {{property.walkAddress}} Google: {{property.googleAddress}}
-            </div>
-        </div>
-        <div class="property-condition" id="transit" style="background:#008000">
-            <span>Transit</span>
-
-            <div class="walk-score">
-                <a ng-href="http://www.walkscore.com/score/{{property.walkAddress}}?utm_source=badge&utm_medium=responsive&utm_campaign=badge"
-                   ng-if="property.walkAddress">
-                    <img src="//pp.walk.sc/badge/walk/{{property.walkAddress}}.svg"
-                         alt="Walk Score of {{property.address}}"/>
-                    <img src="//pp.walk.sc/badge/transit/{{property.walkAddress}}.svg"
-                         alt="Transit Score of {{property.address}}"/>
-                    <img src="//pp.walk.sc/badge/bike/{{property.walkAddress}}.svg"
-                         alt="Bike Score of {{property.address}}"/>
-                </a>
-            </div>
-        </div>
-        <!--<section class="section container-fluid" ng-controller="WeatherController">-->
-            <!--<div bs-panel title="{{location}}">-->
-                <!--{{weather}}-->
-            <!--&lt;!&ndash;</div>&ndash;&gt;-->
-        <!--</section>-->
-
-        <!--<div ng-class="{ false: 'modal', true: 'modal--show' }[isModalVisible]">-->
-            <!--<div class="overlay" ng-click="toggleModal()"></div>-->
-            <!--<div class="modal__contents modal--transition">-->
-                <!--<a class="modal__close" href="" ng-click="toggleModal()">&times;</a>-->
-
-                <!--<h3 ng-if="pickedLocation">Picked Location</h3>-->
-
-                <!--<p ng-if="pickedLocation">Name: <span class="muted">{{pickedLocation.name}}</span><br/>Description:-->
-                    <!--<span class="muted">{{pickedLocation.description}}</span><br/>Latitude: <span class="muted">{{pickedLocation.latitude}}</span><br/>Longitude:-->
-                    <!--<span class="muted">{{pickedLocation.longitude}}</span></p>-->
-                <!--<br/>-->
-                <!--<br/>-->
-
-                <!--<h3 ng-if="lookedUpLocation">Looked Up Location</h3>-->
-
-                <!--<p ng-if="lookedUpLocation">Name: <span class="muted">{{lookedUpLocation.name}}</span><br/>Description:-->
-                    <!--<span class="muted">{{lookedUpLocation.description}}</span><br/>Latitude: <span class="muted">{{lookedUpLocation.latitude}}</span><br/>Longitude:-->
-                    <!--<span class="muted">{{lookedUpLocation.longitude}}</span></p>-->
-            <!--</div>-->
-        <!--</div>-->
-
-        <!--&lt;!&ndash; Dependencies &ndash;&gt;-->
-        <!--<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular.min.js"></script>-->
-        <!--&lt;!&ndash; endDependencies &ndash;&gt;-->
-
-        <!--&lt;!&ndash; Google Maps API &ndash;&gt;-->
-        <!--<script type="text/javascript"-->
-                <!--src="http://maps.googleapis.com/maps/api/js?key=AIzaSyDk_iQ6QWOTHW-TWoXSFLwbcnhaxlcnXXk&libraries=places&sensor=true"></script>-->
-
-        <!--&lt;!&ndash; Scripts &ndash;&gt;-->
-        <!--<script src="locator/locator.min.js"></script>-->
-        <!--<script src="locator/locator-tpl.js"></script>-->
-        <!--<script src="js/app.js"></script>-->
-    </section>
-    <!--<section class="scroller property-pane">-->
-
-
-    <!--</section>-->
+	<section class="scroller property-pane">
+		<p class="page-header">Current Address: {{property.address}} {{property.walkAddress}}</p>
+		<location-picker ng-model="pickedLocation"
+						 limit-to="5"></location-picker>
+		<div>
+			<span>Walk:</span> {{property.walkAddress}}<br>
+			<span>Zillow:</span> {{property.zillowAddress}}<br>
+			<span>Google:</span> {{property.googleAddress}}
+		</div>
+		<div class="property-condition" id="transit">
+			<span>Transit</span>
+			<div class="walk-score">
+				<a ng-href="http://www.walkscore.com/score/{{property.walkAddress}}?utm_source=badge&utm_medium=responsive&utm_campaign=badge"
+				   ng-if="property.walkAddress">
+					<img src="//pp.walk.sc/badge/walk/{{property.walkAddress}}.svg"
+						 alt="Walk Score of {{property.address}}"/>
+					<img src="//pp.walk.sc/badge/transit/{{property.walkAddress}}.svg"
+						 alt="Transit Score of {{property.address}}"/>
+					<img src="//pp.walk.sc/badge/bike/{{property.walkAddress}}.svg"
+						 alt="Bike Score of {{property.address}}"/>
+				</a>
+			</div>
+		</div>
+	</section>
 </section>
-        <!--<div class="property-condition" id="demographics">-->
-            <!--<span id="householdIncome2">Household Income</span>-->
-
-            <!--<div id="household_income" class="details-charts" google-chart data="householdIncome"-->
-                 <!--type="PercentBarChart"></div>-->
-            <!--<span>Employment Occupation</span>-->
-
-            <!--<div id="employment-occupation-chart" class="details-charts" google-chart data="employmentOccupation"-->
-                 <!--type="PieChart"></div>-->
-        <!--</div>-->
-        <!---->
-        <!--<span>Educational Attainment (25+)</span>-->
-
-        <!--<div id="education-chart" class="details-charts" google-chart data="educationpct" type="PercentBarChart"></div>-->
-        <!--<div class="property-condition">-->
-            <!--<p><a-->
-                    <!--href="http://www.walkscore.com/DC/Washington_D.C./Downtown?utm_source=badge&utm_medium=responsive&utm_campaign=badge"-->
-                    <!--target="_blank">Explore Downtown on Walk Score</a></p>-->
-            <!--<span>Nearest Metro Stop:</span>-->
-
-            <!--<div>{{property.properties.properties[0].distances.metroName}}<br>-->
-                <!--{{property.properties.properties[0].distances.metroDist * 0.000621371 | number:2}} mi-->
-            <!--</div>-->
-            <!--<span>Nearest Bus Route:</span>-->
-
-            <!--<div>{{property.properties.properties[0].distances.metrobusRoutes}}<br>-->
-                <!--{{property.properties.properties[0].distances.metrobusDist * 0.000621371 | number:2}} mi-->
-            <!--</div>-->
-        <!--</div>-->
-        <!--<div class="property-condition">-->
-            <!--<span>Nearest Zipcar Location:</span>-->
-
-            <!--<div>{{property.properties.properties[0].distances.zipcarLoc | capitalize:'nottwo'}}<br>-->
-                <!--{{property.properties.properties[0].distances.zipcarDist * 0.000621371 | number:2}} mi-->
-            <!--</div>-->
-            <!--<span>Nearest Bike Share Location:</span>-->
-
-            <!--<div>{{property.properties.properties[0].distances.bikeshareLoc}}<br>-->
-                <!--{{property.properties.properties[0].distances.bikeshareDist * 0.000621371 | number:2}} mi-->
-            <!--</div>-->
-            <!--<span>Average Commute Time:</span>-->
-
-            <!--<div>{{property.census.commuteTimeMean| number: 0}} minutes</div>-->
-            <!--<div id="cars-per-household-chart" class="details-charts" google-chart data="householdCarData"-->
-                 <!--type="BarChart" style=""></div>-->
-            <!--<p class="">Data Source: Walk Score, DC Government, US Census - American Community Survey 2013</p>-->
-        <!--</div>-->
-

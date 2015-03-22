@@ -7,6 +7,10 @@
 /*                          */
 /*    header and body       */
 /*                          */
+.page-header{
+    margin: 0 0 10px!important;
+}
+
 .data-entry,
 .chart-title,
 .property-pane{
@@ -43,11 +47,11 @@
     overflow: auto;
     -webkit-overflow-scrolling: touch;
     position: absolute;
-    top: 112px;
+    top: 150px;
     bottom: 0px;
     left:0;
     right:0;
-    padding: 15px;
+    padding: 5px 15px;
     background: white;
     border-top: 1px solid #eeeeee;
 }
@@ -76,11 +80,16 @@ h5{
   background-color: #eeeeee !important; }
 
 .property-pane .property-condition:nth-of-type(odd) {
-  background-color: #eeeeee; }
+}
 .property-pane .property-condition:nth-of-type(even) {
-  background-color: #ffffff; }
+}
 
-
+.property-condition > span{
+    border-bottom: 1px solid #eee;
+    padding-bottom:2px;
+    margin-bottom: 2px;
+    display: block;
+}
 .property-pane .property-condition{
   span{
       text-transform: uppercase;
@@ -92,4 +101,14 @@ h5{
     margin: 0;
     background: black;
   }
+  .walk-score{
+    padding-bottom: 10px;
+    img{
+        float: left;
+        width: 33.3%;
+        margin-bottom: 10px;
+    }
+  }
 }
+
+
