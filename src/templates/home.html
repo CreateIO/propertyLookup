@@ -2,10 +2,13 @@
 	<section>
 		<p class="page-header">Current Address: {{address}}</p>
 		<location-picker ng-model="pickedLocation" limit-to="5"></location-picker>
-	<div>Walk: {{walkAddress}}
-	Zillow:	{{zillowAddress}} Google: {{googleAddress}}</div>
+	    <div>
+            <span>Walk:</span> {{walkAddress}}<br>
+            <span>Zillow:</span> {{zillowAddress}}<br>
+            <span>Google:</span> {{googleAddress}}
+        </div>
 		<div class="data-entry">
-		  <input alt="Enter address" placeholder="{{address}}" class="address" value="{{address2}}">
+		  <input alt="Enter address" placeholder="ex: {{address}}" class="address" value="{{address2}}">
 			<input type="button" value="Go" class="Go" alt="Go">
 		</div>
 		<div ng-class="{ false: 'modal', true: 'modal--show' }[isModalVisible]">
