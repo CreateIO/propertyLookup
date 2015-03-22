@@ -1,7 +1,6 @@
 angular.module('Commutable')
-
-    .factory('deviceReady', function(){
-        return function(done) {
+    .factory('deviceReady', function () {
+        return function (done) {
             if (typeof window.cordova === 'object') {
                 document.addEventListener('deviceready', function () {
                     done();
@@ -26,17 +25,17 @@ angular.module('Commutable')
             });
         };
     })
-    .controller('MainController',['$scope','$document', '$window', '$rootScope', 'deviceReady', 'getCurrentPosition', function ($scope, $document, $window, $rootScope, deviceReady, getCurrentPosition) {
+    .controller('MainController', ['$scope', '$document', '$window', '$rootScope', 'deviceReady', 'getCurrentPosition', function ($scope, $document, $window, $rootScope, deviceReady, getCurrentPosition) {
         //$scope.currentAddress = "1111 19th St NW, Washington, DC 20036";
         $scope.property = {
-            "address":"315 S. Garfield St, Arlington, VA 22204", 
-            "latitude":0, 
-            "longitude":0,
+            "address": "315 S. Garfield St, Arlington, VA 22204",
+            "latitude": 0,
+            "longitude": 0,
             "walkAddress": "",
-            "googleAddress":"",
-            "currentPosition":""
+            "googleAddress": "",
+            "currentPosition": ""
         };
-        
+
         $scope.issue = function () {
             var textElement = document.getElementById("householdIncome");
             textElement.innerHTML = 'I am a changed div!';
@@ -57,7 +56,7 @@ angular.module('Commutable')
             return true;
         }
 
-        $scope.walkAddressLookup = function(){
+        $scope.walkAddressLookup = function () {
             if ($scope.property.address) {
                 console.log("refreshing with address " + $scope.property.address);
                 var address = $scope.property.address;
@@ -67,31 +66,32 @@ angular.module('Commutable')
                 return address.split(' ').join('-');
             }
         };
-            
-        $scope.loadAddresses = function(){
+
+        $scope.loadAddresses = function () {
             // console.log($scope.googleAddress);
-            $scope.property.currentPosition = getCurrentPosition(function(position){
+            $scope.property.currentPosition = getCurrentPosition(function (position) {
                 console.log("Position is ");
                 console.log(position);
 
             });
-            
+
             if ($scope.property.address) {
-                console.log("refreshing with address "+ $scope.property.address);
+                console.log("refreshing with address " + $scope.property.address);
                 //for walkscore
                 $scope.property.walkAddress = $scope.walkAddressLookup();
 
-                console.log("walk address is "+ $scope.property.walkAddress);
-                
+                console.log("walk address is " + $scope.property.walkAddress);
+
                 if (hasStreetNumber($scope.property.address)) {
                     $scope.property.googleAddress = $scope.property.address;
                 } else {
                     //try lat long, because this address isn't very specific
                     $scope.property.googleAddress = '' + $scope.property.currentPosition.coords.latitude + ', ' + $scope.property.currentPosition.coords.longitude;
                 }
-               
+
             }
         };
+        
         var timeout = null;
 
         //$scope.debounceRefresh = function(newVal, oldVal) {

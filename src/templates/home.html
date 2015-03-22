@@ -1,3 +1,4 @@
+<html ng-app="Commutable">
 <section class="section container-fluid" ng-controller="MainController">
 	<!-- Dependencies -->
 	<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular.min.js"></script>
@@ -11,7 +12,7 @@
 	<!-- Scripts -->
 	<div class="data-entry">
 		<input alt="Enter address" placeholder="{{property.address}}" class="address" ng-model="property.address">
-		<input type="button" value="Go" class="Go" alt="Go" onclick="{{loadAddresses()}}">
+		<input type="button" value="Go" class="Go" alt="Go" ng-click="loadAddresses()">
 	</div>
 
 	<section class="scroller property-pane">
