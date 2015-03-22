@@ -69,11 +69,11 @@ angular.module('Commutable')
 
         $scope.loadAddresses = function () {
             // console.log($scope.googleAddress);
-            $scope.property.currentPosition = getCurrentPosition(function (position) {
-                console.log("Position is ");
-                console.log(position);
-
-            });
+             getCurrentPosition(function (position) {
+                 console.log("Position is ");
+                 console.log(position);
+                 $scope.property.currentPosition = position;
+             });
 
             if ($scope.property.address) {
                 console.log("refreshing with address " + $scope.property.address);

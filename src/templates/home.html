@@ -15,9 +15,9 @@
 	</div>
 
 	<section class="scroller property-pane">
-		<location-picker ng-model="pickedLocation" limit-to="5"></location-picker>
 		<div>
             <p ng-bind="property.address"></p>
+			<span>Current Position:</span> {{property.currentPosition}}
 			<span class="hide">Walk: {{property.walkAddress}}</span>
 			<span class="hide">Google: {{property.googleAddress}}</span>
 		</div>
@@ -27,11 +27,11 @@
 				<a ng-href="http://www.walkscore.com/score/{{property.walkAddress}}?utm_source=badge&utm_medium=responsive&utm_campaign=badge"
 				   ng-if="property.walkAddress">
 					<img src="//pp.walk.sc/badge/walk/{{property.walkAddress}}.svg"
-						 alt="Walk Score of {{property.address}}" walk-score/>
+						 alt="Walk Score of {{property.address}}"/>
 					<img src="//pp.walk.sc/badge/transit/{{property.walkAddress}}.svg"
-						 alt="Transit Score of {{property.address}}" transit-score/>
+						 alt="Transit Score of {{property.address}}"/>
 					<img src="//pp.walk.sc/badge/bike/{{property.walkAddress}}.svg"
-						 alt="Bike Score of {{property.address}}" bike-score/>
+						 alt="Bike Score of {{property.address}}"/>
 				</a>
 			</div>
 		</div>
