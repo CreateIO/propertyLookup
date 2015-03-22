@@ -38,7 +38,7 @@ angular.module('Commutable')
     .controller('MainController', ['$scope', '$document', '$window', '$rootScope', 'deviceReady', 'getCurrentPosition', function ($scope, $document, $window, $rootScope, deviceReady, getCurrentPosition) {
         //$scope.currentAddress = "1111 19th St NW, Washington, DC 20036";
         $scope.model = {
-            "address": "315 S. Garfield St, Arlington, VA 22204",
+            "address": "555 Pennsylvania Ave NW, Washington, DC 20001",
             "latitude": 0,
             "longitude": 0,
             "walkAddress": "",
