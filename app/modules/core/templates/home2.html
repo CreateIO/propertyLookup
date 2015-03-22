@@ -1,0 +1,76 @@
+<section class="section container-fluid">
+	<section>
+		<location-picker ng-model="pickedLocation"
+    limit-to="5"></location-picker>
+		<p class="page-header header-text2">testing testing testing Current Address: {{address3}}</p>
+		<div class="data-entry">
+		  <input alt="Enter address" placeholder="{{address2}}" class="address" value="{{address2}}">
+			<input type="button" value="Go" class="Go" alt="Go">
+		</div>
+	</section>
+	<section class="scroller property-pane">
+		<div class="property-condition" id="demographics">
+			<span id="householdIncome">Household Income</span>
+			<div id="household_income" class="details-charts" google-chart data="householdIncome" type="PercentBarChart"></div>
+			<span>Employment Occupation</span>
+			<div id="employment-occupation-chart" class="details-charts" google-chart data="employmentOccupation" type="PieChart"></div>
+		</div>
+		<div class="property-condition" id="transit">
+			<span>Transit</span>
+			<div class="walk-score">
+					<a
+						ng-href="http://www.walkscore.com/score/{{walkAddress}}?utm_source=badge&utm_medium=responsive&utm_campaign=badge"
+						ng-if="walkAddress">
+						<img src="//pp.walk.sc/badge/walk/{{walkAddress}}.svg" alt="Walk Score of {{property.address}}" />
+						<img src="//pp.walk.sc/badge/transit/{{walkAddress}}.svg" alt="Transit Score of {{property.address}}" />
+						<img src="//pp.walk.sc/badge/bike/{{walkAddress}}.svg" alt="Bike Score of {{property.address}}" />
+					</a>
+			</div>
+			<span>Educational Attainment (25+)</span>
+			<div id="education-chart" class="details-charts" google-chart data="educationpct" type="PercentBarChart"></div>
+		<div class="property-condition">
+				<p><a
+					href="http://www.walkscore.com/DC/Washington_D.C./Downtown?utm_source=badge&utm_medium=responsive&utm_campaign=badge"
+					target="_blank">Explore Downtown on Walk Score</a></p>
+				<span>Nearest Metro Stop:</span>
+				<div>{{property.properties.properties[0].distances.metroName}}<br>
+					{{property.properties.properties[0].distances.metroDist * 0.000621371 | number:2}} mi
+				</div>
+				<span>Nearest Bus Route:</span>
+				<div>{{property.properties.properties[0].distances.metrobusRoutes}}<br>
+					{{property.properties.properties[0].distances.metrobusDist * 0.000621371 | number:2}} mi
+			  </div>
+		</div>
+	  <div class="property-condition">
+				<span>Nearest Zipcar Location:</span>
+				<div>{{property.properties.properties[0].distances.zipcarLoc | capitalize:'nottwo'}}<br>
+					{{property.properties.properties[0].distances.zipcarDist * 0.000621371 | number:2}} mi</div>
+				<span>Nearest Bike Share Location:</span>
+				<div>{{property.properties.properties[0].distances.bikeshareLoc}}<br>
+					{{property.properties.properties[0].distances.bikeshareDist * 0.000621371 | number:2}} mi
+				</div>
+				<span>Average Commute Time:</span>
+				<div>{{property.census.commuteTimeMean| number: 0}} minutes</div>
+				<div id="cars-per-household-chart" class="details-charts" google-chart data="householdCarData"
+						 type="BarChart" style=""></div>
+				<p class="">Data Source: Walk Score, DC Government, US Census - American Community Survey 2013</p>
+  	</div>
+  	<div smooth-button class="container" ng-mouseenter="play()" ng-mouseleave="reverse()"></div>
+    <div smooth-button class="container" ng-mouseenter="play()" ng-mouseleave="reverse()"></div>
+    <div smooth-button class="container" ng-mouseenter="play()" ng-mouseleave="reverse()"></div>
+
+        <div class="circle red"></div>
+        <div class="circle orange"></div>
+        <div class="circle yellow"></div>
+        <div class="circle grey"></div>
+
+	</div>
+
+</div>
+
+
+</section>
+
+
+
+</section>

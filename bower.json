@@ -1,0 +1,28 @@
+{
+  "name": "Commutable",
+  "version": "0.0.1",
+  "description": "Where can I commute from here?",
+  "dependencies": {
+    "bootstrap": "3.x",
+    "angular": "~1.2",
+    "angular-resource": "~1.2",
+    "angular-mocks": "~1.2",
+    "angular-cookies": "~1.2",
+    "angular-animate": "~1.2",
+    "angular-touch": "~1.2",
+    "angular-sanitize": "~1.2",
+    "angular-bootstrap": "~0.10.0",
+    "angular-ui-utils": "~0.1.1",
+    "angular-ui-router": "~0.2.10",
+    "mobile-angular-ui": "1.2.x",
+    "font-awesome": "4.2",
+    "gsap": "~1.16.1"
+  },
+  "devDependencies": {
+    "angular-mocks": "1.2.16",
+    "q": "1"
+  },
+  "resolutions": {
+    "angular": ">=1"
+  }
+}
