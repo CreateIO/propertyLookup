@@ -3,7 +3,7 @@
 describe('MainController', function($scope){
 	var scope;
 	//mock Application to allow us to inject our own dependencies
-    beforeEach(angular.mock.module('PropLookupRE'));
+    beforeEach(angular.mock.module('Commutable'));
     //mock the controller for the same reason and include $rootScope and $controller
     beforeEach(angular.mock.inject(function($rootScope, $controller){
         scope = $rootScope.$new();

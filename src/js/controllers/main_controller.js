@@ -1,16 +1,48 @@
-angular.module('PropLookupRE.controllers.Main', [])
+angular.module('Commutable')
 
-    .controller('MainController', function ($scope) {
+    .factory('deviceReady', function(){
+        return function(done) {
+            if (typeof window.cordova === 'object') {
+                document.addEventListener('deviceready', function () {
+                    done();
+                }, false);
+            } else {
+                done();
+            }
+        };
+    })
+    .factory('getCurrentPosition', function (deviceReady, $document, $window, $rootScope) {
+        return function (done) {
+            deviceReady(function () {
+                navigator.geolocation.getCurrentPosition(function (position) {
+                    $rootScope.$apply(function () {
+                        done(position);
+                    });
+                }, function (error) {
+                    $rootScope.$apply(function () {
+                        throw new Error('Unable to retrieve position');
+                    });
+                });
+            });
+        };
+    })
+    .controller('MainController',['$scope','$document', '$window', '$rootScope', 'deviceReady', 'getCurrentPosition', function ($scope, $document, $window, $rootScope, deviceReady, getCurrentPosition) {
         //$scope.currentAddress = "1111 19th St NW, Washington, DC 20036";
-        $scope.address = "315 S. Garfield St, Arlington, VA 22204";
-        $scope.latitude = 0;
-        $scope.longitude = 0;
+        $scope.property = {
+            "address":"315 S. Garfield St, Arlington, VA 22204", 
+            "latitude":0, 
+            "longitude":0,
+            "walkAddress": "",
+            "googleAddress":"",
+            "currentPosition":""
+        };
+        
         $scope.issue = function () {
             var textElement = document.getElementById("householdIncome");
             textElement.innerHTML = 'no more issue!';
             console.log(textElement.innerHTML);
         };
-
+        
         function hasStreetNumber(address) {
             var components = address.split(' ');
             var first = components[0];
@@ -25,39 +57,56 @@ angular.module('PropLookupRE.controllers.Main', [])
             return true;
         }
 
-        $scope.refresh = function(){
-            if ($scope.address) {
-                var address = $scope.address.replace(',', '');
-                
-                //for walkscore
-                $scope.walkAddress = address.split(' ').join('-');
-                //for zillow rents
-                $scope.zillowAddress = address.split(' ').join('+');
-                //for zillow rents
+        $scope.walkAddressLookup = function(){
+            if ($scope.property.address) {
+                console.log("refreshing with address " + $scope.property.address);
+                var address = $scope.property.address;
 
-                if (hasStreetNumber(address)) {
-                    $scope.googleAddress = address;
+                address = address.replace(',', '');
+                //for walkscore
+                return address.split(' ').join('-');
+            }
+        };
+            
+        $scope.loadAddresses = function(){
+            // console.log($scope.googleAddress);
+            $scope.property.currentPosition = getCurrentPosition(function(position){
+                console.log("Position is ");
+                console.log(position);
+
+            });
+            
+            if ($scope.property.address) {
+                console.log("refreshing with address "+ $scope.property.address);
+                //for walkscore
+                $scope.property.walkAddress = $scope.walkAddressLookup();
+
+                console.log("walk address is "+ $scope.property.walkAddress);
+                
+                if (hasStreetNumber($scope.property.address)) {
+                    $scope.property.googleAddress = $scope.property.address;
                 } else {
                     //try lat long, because this address isn't very specific
-                    $scope.googleAddress = '' + $scope.latitude + ', ' + $scope.longitude;
+                    $scope.property.googleAddress = '' + $scope.property.currentPosition.coords.latitude + ', ' + $scope.property.currentPosition.coords.longitude;
                 }
-                // console.log($scope.googleAddress);
+               
             }
         };
         var timeout = null;
 
-        var debounceRefresh = function(newVal, oldVal) {
-            if (newVal != oldVal) {
-                if (timeout) {
-                    $timeout.cancel(timeout)
-                }
-                timeout = $timeout(refresh, 1000);  // 1000 = 1 second
-            }
-        };
-        $scope.$watch('address', debounceRefresh);
-        $scope.refresh();
-    }) //https://github.com/winkerVSbecks/locator/blob/master/package.json
-    .controller('MainCtrl', ['$scope', 'location', function ($scope, location) {
+        //$scope.debounceRefresh = function(newVal, oldVal) {
+        //    console.log("dbouncing");
+        //    if (newVal != oldVal) {
+        //        if (timeout) {
+        //            $timeout.cancel(timeout)
+        //        }
+        //        timeout = $timeout( $rootScope.$apply(refresh), 1000);  // 1000 = 1 second
+        //    }
+        //};
+        //$scope.$watch('property.address', $scope.debounceRefresh);
+        $scope.loadAddresses();
+    }]) //https://github.com/winkerVSbecks/locator/blob/master/package.json
+    .controller('locationCtrl', ['$scope', 'location', function ($scope, location) {
         location.get(angular.noop, angular.noop);
         $scope.isModalVisible = false;
 
@@ -95,7 +144,6 @@ angular.module('PropLookupRE.controllers.Main', [])
             }
         };
     })
-
     .directive('smoothButton', function () {
         var linker = function (scope, element, attrs) {
             var tl = new TimelineLite();

@@ -4,7 +4,7 @@ describe('MainController', function($scope){
 	var scope;
 
 	//mock Application to allow us to inject our own dependencies
-    beforeEach(angular.mock.module('PropLookupRE.controllers.Main'));
+    beforeEach(angular.mock.module('Commutable.controllers.Main'));
     //mock the controller for the same reason and include $rootScope and $controller
     beforeEach(angular.mock.inject(function($rootScope, $controller){
         scope = $rootScope.$new();
@@ -13,8 +13,8 @@ describe('MainController', function($scope){
     })
     );
      // tests start here
-    it('should have scope.address2 = 315 S. Garfield St, Arlington, VA 22204', function(){
-        expect(scope.address2).toBe('315 S. Garfield St, Arlington, VA 22204');
+    it('should have scope.property.address = 315 S. Garfield St, Arlington, VA 22204', function(){
+        expect(scope.property.address).toBe('315 S. Garfield St, Arlington, VA 22204');
         console.log('this works.');
     });
     it('expect this to be present', function(){
