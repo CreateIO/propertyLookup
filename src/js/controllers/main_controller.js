@@ -125,5 +125,6 @@ angular.module('PropLookupRE.controllers.Main', [])
         return {
             scope: true,
             link: linker
+//        templateUrl: 'smooth-button.tmpl.html'
         }
     });
