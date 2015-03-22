@@ -16,28 +16,21 @@
     <section class="scroller property-pane">
         <div>
             <p ng-bind="model.address"></p>
-
             <p ng-bind="model.currentPosition"></p>
             <span class="hide">Walk: {{model.walkAddress}}</span>
             <span class="hide">Google: {{model.googleAddress}}</span>
             <span>Your Current Position:</span> {{model.currentPosition}}
         </div>
-        <div>
-            <span>Walk:</span> {{model.walkAddress}}<br>
-            <span>Zillow:</span> {{model.zillowAddress}}<br>
-            <span>Google:</span> {{model.googleAddress}}<br>
-            <span>Current Position:</span> {{model.currentPosition}}<br>
-        </div>
-
         <section class="section container-fluid">
             <div bs-panel title="{{model.location}}">
-                <h3>Weather:</h3>{{model.weather}}<br>
+            <span>Weather</span>
+                {{model.weather}}<br>
             </div>
             <div class="property-condition" ng-show="model.currentPosition" ng-show="{{model.currentPosition}}">
                 <span>Location</span>
                 <img class="lazy"
-                     src="https://maps.googleapis.com/maps/api/staticmap?center={{model.latitude}},{{model.longitude}}&zoom=13&size=100x100&maptype=roadmapbfb61dbdefe917c8a29b69507c76d24c6f690672&markers=color:green%7Clabel:{{model.address}}%7c{{model.latitude}},{{model.longitude}}&sensor=false"
-                     width="30%" style="margin: .2em 0 0 -.2em" alt="model.address"/>
+                     src="https://maps.googleapis.com/maps/api/staticmap?center={{model.latitude}},{{model.longitude}}&zoom=13&size=375x200&maptype=roadmapbfb61dbdefe917c8a29b69507c76d24c6f690672&markers=color:green%7Clabel:{{model.address}}%7c{{model.latitude}},{{model.longitude}}&sensor=false"
+                     width="95%" height="200" style="margin: 0" alt="model.address"/>
             </div>
             <div class="property-condition" id="transit">
                 <span>Transit</span>
