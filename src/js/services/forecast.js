@@ -1,4 +1,4 @@
-angular.module('WeatherApp.services.Forecast', [])
+angular.module('Commutable')
     .factory('getWeather', function($http){
         return function(lat, lng, done) {
             $http({method: 'GET', url: 'http://api.openweathermap.org/data/2.5/weather?lat='+lat+'&lon='+lng})
