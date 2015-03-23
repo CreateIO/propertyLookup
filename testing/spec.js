@@ -4,7 +4,7 @@ describe('MainController', function () {
     it('should have a title', function () {
         browser.get('http://localhost:8000');
 
-        expect(browser.getTitle()).toEqual('Property Lookup');
+        expect(browser.getTitle()).toEqual('Commutable');
     });
     it('should have be able to find the menu buttons', function () {
 

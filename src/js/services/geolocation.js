@@ -1,7 +1,4 @@
-
-angular.module('WeatherApp.services.Geolocation', [
-    'WeatherApp.services.Cordova'
-])
+angular.module('Commutable')
     .factory('getCurrentPosition', function (deviceReady, $document, $window, $rootScope) {
         return function (done) {
             deviceReady(function () {
@@ -11,7 +8,7 @@ angular.module('WeatherApp.services.Geolocation', [
                     });
                 }, function (error) {
                     $rootScope.$apply(function () {
-                        throw new Error('Unable to retreive position');
+                        throw new Error('Unable to retrieve position');
                     });
                 });
             });

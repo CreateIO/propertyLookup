@@ -14,19 +14,13 @@
     </div>
 
     <section class="scroller property-pane">
-        <div>
-            <p ng-bind="model.address"></p>
-            <p ng-bind="model.currentPosition"></p>
-            <span class="hide">Walk: {{model.walkAddress}}</span>
-            <span class="hide">Google: {{model.googleAddress}}</span>
-            <span>Your Current Position:</span> {{model.currentPosition}}
-        </div>
+       
         <section class="section container-fluid">
-            <div bs-panel title="{{model.location}}">
+            <div class="property-condition" title="{{model.location}}">
             <span>Weather</span>
                 {{model.weather}}<br>
             </div>
-            <div class="property-condition" ng-show="model.currentPosition" ng-show="{{model.currentPosition}}">
+            <div class="property-condition" ng-show="model.currentPosition">
                 <span>Location</span>
                 <img class="lazy"
                      src="https://maps.googleapis.com/maps/api/staticmap?center={{model.latitude}},{{model.longitude}}&zoom=13&size=375x200&maptype=roadmapbfb61dbdefe917c8a29b69507c76d24c6f690672&markers=color:green%7Clabel:{{model.address}}%7c{{model.latitude}},{{model.longitude}}&sensor=false"
@@ -35,9 +29,9 @@
             <div class="property-condition" id="transit">
                 <span>Transit</span>
 
-                <div class="walk-score">
-                    <a ng-href="http://www.walkscore.com/score/{{model.walkAddress}}?utm_source=badge&utm_medium=responsive&utm_campaign=badge"
-                       ng-if="model.walkAddress">
+                <div class="lazy"  ng-if="model.walkAddress">
+
+                   <a ng-if="model.walkAddress" ng-href="http://www.walkscore.com/score/{{model.walkAddress}}?utm_source=badge&utm_medium=responsive&utm_campaign=badge">
                         <img src="//pp.walk.sc/badge/walk/{{model.walkAddress}}.svg"
                              alt="Walk Score of {{model.address}}"/>
                         <img src="//pp.walk.sc/badge/transit/{{model.walkAddress}}.svg"
@@ -46,6 +40,13 @@
                              alt="Bike Score of {{model.address}}"/>
                     </a>
                 </div>
+            </div>
+            <div>
+                <p ng-bind="model.address"></p>
+                <p ng-bind="model.currentPosition"></p>
+                <span class="hide">Walk: {{model.walkAddress}}</span>
+                <span class="hide">Google: {{model.googleAddress}}</span>
+                <span>Your Current Position:</span> {{model.currentPosition}}
             </div>
         </section>
 

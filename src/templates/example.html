@@ -7,16 +7,6 @@
 			<div id="employment-occupation-chart" class="details-charts" google-chart data="employmentOccupation" type="PieChart"></div>
 		</div>
 		<div class="property-condition" id="transit">
-			<span>Transit</span>
-			<div class="walk-score">
-					<a
-						ng-href="http://www.walkscore.com/score/{{walkAddress}}?utm_source=badge&utm_medium=responsive&utm_campaign=badge"
-						ng-if="walkAddress">
-						<img src="//pp.walk.sc/badge/walk/{{walkAddress}}.svg" alt="Walk Score of {{property.address}}" />
-						<img src="//pp.walk.sc/badge/transit/{{walkAddress}}.svg" alt="Transit Score of {{property.address}}" />
-						<img src="//pp.walk.sc/badge/bike/{{walkAddress}}.svg" alt="Bike Score of {{property.address}}" />
-					</a>
-			</div>
 			<span>Educational Attainment (25+)</span>
 			<div id="education-chart" class="details-charts" google-chart data="educationpct" type="PercentBarChart"></div>
 		<div class="property-condition">
