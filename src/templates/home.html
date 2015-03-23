@@ -19,11 +19,12 @@
             <p ng-bind="model.currentPosition"></p>
             <span class="hide">Walk: {{model.walkAddress}}</span>
             <span class="hide">Google: {{model.googleAddress}}</span>
-            <span>Your Current Position:</span> {{model.currentPosition}}
+            <span class="strong">Your Current Position:</span><br>
+            lat: {{model.latitude}}, long: {{model.longitude}}
         </div>
         <section class="section container-fluid">
             <div bs-panel title="{{model.location}}">
-            <span>Weather</span>
+            <span class="strong">Weather</span>
                 {{model.weather}}<br>
             </div>
             <div class="property-condition" ng-show="model.currentPosition" ng-show="{{model.currentPosition}}">
