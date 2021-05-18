@@ -42,6 +42,6 @@
     "weinre": "^2.0.0-pre-I0Z7U9OV"
   },
   "dependencies": {
-    "gsap": "^1.16.1"
+    "gsap": "^3.6.0"
   }
 }
