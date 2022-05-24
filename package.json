@@ -26,7 +26,7 @@
     "gulp-uglify": "^0.3.1",
     "gulp-watch": "^0.6.9",
     "imagemin-pngcrush": "^0.1.0",
-    "karma": "^0.12.28",
+    "karma": "^6.3.14",
     "karma-chai": "^0.1.0",
     "karma-expect": "^1.1.0",
     "karma-mocha": "^0.1.10",
